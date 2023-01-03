@@ -40,6 +40,11 @@ impl MemTable {
         self.entries.len()
     }
 
+    /// Check if the MemTable is empty.
+    pub fn is_empty(&self) -> bool {
+        self.len() == 0
+    }
+
     /// Perform a binary search on the entries to find a given record's index.
     /// If the record is not find a `[Result::Err]` is returned with the index to insert at.
     fn get_index(&self, key: &[u8]) -> Result<usize, usize> {
@@ -79,7 +84,7 @@ impl MemTable {
         let entry = MemTableEntry {
             key: key.to_owned(),
             value: None,
-            timestamp: timestamp,
+            timestamp,
             deleted: true,
         };
 
@@ -108,6 +113,12 @@ impl MemTable {
     /// Return a reference to the entries in the MemTable.
     pub fn entries(&self) -> &[MemTableEntry] {
         &self.entries
+    }
+}
+
+impl Default for MemTable {
+    fn default() -> Self {
+        Self::new()
     }
 }
 

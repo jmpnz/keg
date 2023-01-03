@@ -7,3 +7,13 @@ pub struct SSTableRecord {
     size: usize,
     value_offset: usize,
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[cfg(test)]
+    fn test_sstable_record() {
+        assert_eq!(SSTABLE_MIN_SIZE, 1024)
+    }
+}

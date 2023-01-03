@@ -30,7 +30,6 @@ fn files_with_ext(dir: &Path, ext: &str) -> Vec<PathBuf> {
 }
 #[cfg(test)]
 mod tests {
-    use super::*;
 
     #[test]
     fn it_works() {

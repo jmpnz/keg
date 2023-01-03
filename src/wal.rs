@@ -104,7 +104,7 @@ impl WAL {
         let mut new_wal = WAL::new(dir)?;
 
         for wal_file in wal_files.iter() {
-            if let Ok(wal) = WAL::from(&wal_file) {
+            if let Ok(wal) = WAL::from(wal_file) {
                 for entry in wal.into_iter() {
                     if entry.deleted {
                         new_tbl.delete(entry.key.as_slice(), entry.timestamp);
@@ -222,10 +222,10 @@ impl Iterator for WALIterator {
         let timestamp = u128::from_le_bytes(timestamp_buffer);
 
         Some(WALEntry {
-            key: key,
-            value: value,
-            timestamp: timestamp,
-            deleted: deleted,
+            key,
+            value,
+            timestamp,
+            deleted,
         })
     }
 }
