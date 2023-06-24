@@ -22,8 +22,8 @@ pub struct MemTableEntry {
 
 impl MemTable {
     /// Create an owned MemTable with `MEM_TABLE_SIZE` capacity.
-    pub fn new() -> MemTable {
-        MemTable {
+    pub fn new() -> Self {
+        Self {
             entries: Vec::with_capacity(MEM_TABLE_SIZE),
             size: 0,
             cap: MEM_TABLE_SIZE,

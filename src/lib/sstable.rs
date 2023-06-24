@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 use std::fs::File;
 
 /// SSTABLE_MIN_SIZE specifies the number of records in a single SSTable.

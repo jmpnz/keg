@@ -47,18 +47,18 @@ pub struct WAL {
 
 impl WAL {
     /// Create a new WAL file in a given directory.
-    pub fn new(dir: &Path) -> io::Result<WAL> {
+    pub fn new(dir: &Path) -> io::Result<Self> {
         let timestamp = get_current_timestamp();
         let path = Path::new(dir).join(timestamp.to_string() + ".wal");
         let file = OpenOptions::new().append(true).create(true).open(&path)?;
         let file = BufWriter::new(file);
 
-        Ok(WAL { path, file })
+        Ok(Self { path, file })
     }
 
     /// Open a WAL file from an existing file path.
     pub fn from(path: &Path) -> io::Result<WAL> {
-        let file = OpenOptions::new().append(true).create(true).open(&path)?;
+        let file = OpenOptions::new().append(true).create(true).open(path)?;
         let file = BufWriter::new(file);
 
         Ok(WAL {
